@@ -10,6 +10,7 @@ install: []
 before_script:
   - docker pull "beevelop/ionic" || true
   - docker pull "nginx:alpine" || true
+  - "echo test"
 
 script:
   - docker --version
