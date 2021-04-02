@@ -36,8 +36,9 @@ after_success:
   - docker push mmagnani/udagram-user-api:latest
   - docker push mmagnani/udagram-frontend:latest
   - docker push mmagnani/udagram-reverse-proxy:latest
+  - kubectl delete namespace udagram
   - kubectl create namespace udagram
-  - kubectl apply -f udagram-kubernetes/udagram-configmap.yml
+  - kubectl apply -f udagram-kubernetes/udagram-configmap.yml -n udagram
   - kubectl apply -f udagram-kubernetes/udagram-feed-api-deployment.yml
   - kubectl apply -f udagram-kubernetes/udagram-feed-api-service.yml
   - kubectl apply -f udagram-kubernetes/udagram-user-api-deployment.yml
