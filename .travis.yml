@@ -5,13 +5,19 @@ node_js:
 services:
   - docker
 
-install: []
+install:
+  - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+  - chmod +x ./kubectl
+  - sudo mv ./kubectl /usr/local/bin/kubectl
+  - mkdir ${HOME}/.kube
+  - echo "$KUBE_CONFIG" | base64 --decode > ${HOME}/.kube/config
 
 before_script:
   - docker pull "beevelop/ionic" || true
   - docker pull "nginx:alpine" || true
 
 script:
+  - kubectl get pods
   - docker --version
   - docker build -f udagram-feed-api/Dockerfile -t  mmagnani/udagram-feed-api:latest udagram-feed-api
   - docker build -f udagram-user-api/Dockerfile -t  mmagnani/udagram-user-api:latest udagram-user-api
@@ -25,3 +31,6 @@ after_success:
   - docker push mmagnani/udagram-user-api:latest
   - docker push mmagnani/udagram-frontend:latest
   - docker push mmagnani/udagram-reverse-proxy:latest
+  - kubectl create namespace udagram
+  - kubectl apply -f udagram-kubernetes/udagram-deployments.yml
+  - kubectl apply -f udagram-kubernetes/udagram-services.yml
