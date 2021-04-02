@@ -14,9 +14,19 @@ install:
   - sudo mv ./kubectl /usr/local/bin/kubectl
   - mkdir ${HOME}/.kube
   - mv udagram-kubernetes/config ${HOME}/.kube/
+  - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscli-bundle.zip"
+  - unzip awscli-bundle.zip
+  - sudo ./awscli-bundle/install -i /usr/local/aws -b /bin/aws
+  - aws --version
+  - mkdir ${HOME}/.aws
+  - cat << EOF >>  $HOME/.aws/credentials
+    [default]
+    aws_access_key_id = ${AWS_KEY}
+    aws_secret_access_key = ${AWS_SECRETKEY}
+    region = ${AWS_REGION}
+    EOF
 
 before_script: []
 
 script:
-  - cat ${HOME}/.kube/config
   - kubectl get pods
