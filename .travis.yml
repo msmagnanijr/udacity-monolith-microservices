@@ -13,12 +13,15 @@ before_script:
 
 script:
   - docker --version
-  - docker build -f udagram-feed-api/Dockerfile  -t  mmagnani/udagram-feed-api:latest udagram-feed-api
-  - docker build -f udagram-user-api/Dockerfile  -t  mmagnani/udagram-user-api:latest udagram-user-api
-  - docker build -f udagram-frontend/Dockerfile  -t  mmagnani/udagram-frontend:latest udagram-frontend
+  - docker build -f udagram-feed-api/Dockerfile -t  mmagnani/udagram-feed-api:latest udagram-feed-api
+  - docker build -f udagram-user-api/Dockerfile -t  mmagnani/udagram-user-api:latest udagram-user-api
+  - docker build -f udagram-frontend/Dockerfile -t  mmagnani/udagram-frontend:latest udagram-frontend
+  - docker build -f udagram-reverse-proxy/Dockerfile -t  mmagnani/udagram-reverse-proxy:latest udagram-reverse-proxy
+
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push mmagnani/udagram-feed-api:latest
   - docker push mmagnani/udagram-user-api:latest
   - docker push mmagnani/udagram-frontend:latest
+  - docker push mmagnani/udagram-reverse-proxy:latest
