@@ -16,6 +16,7 @@ install:
   - mv udagram-kubernetes/config ${HOME}/.kube/
   - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscli-bundle.zip"
   - unzip awscli-bundle.zip
+  - ls -la
   - sudo ./awscli-bundle/install -i /usr/local/aws -b /bin/aws
   - aws --version
   - mkdir ${HOME}/.aws
