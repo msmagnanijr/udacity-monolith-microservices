@@ -10,16 +10,12 @@ install: []
 before_script:
   - docker pull "beevelop/ionic" || true
   - docker pull "nginx:alpine" || true
-  - "echo test"
 
 script:
   - docker --version
-  - cd udagram-feed-api && docker build -t udagram-feed-api .
-  - docker tag udagram-feed-api mmagnani/udagram-feed-api:latest
-  - cd udagram-user-api && docker build -t udagram-user-api .
-  - docker tag udagram-user-api mmagnani/udagram-user-api:latest
-  - cd udagram-frontend && docker build -t udagram-frontend .
-  - docker tag udagram-frontend mmagnani/udagram-frontend:latest
+  - cd udagram-feed-api && docker build -t  mmagnani/udagram-feed-api:latest .
+  - cd udagram-user-api && docker build -t  mmagnani/udagram-user-api:latest .
+  - cd udagram-frontend && docker build -t  mmagnani/udagram-frontend:latest .
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
