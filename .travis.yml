@@ -10,27 +10,10 @@ install:
   - chmod +x ./kubectl
   - sudo mv ./kubectl /usr/local/bin/kubectl
   - mkdir ${HOME}/.kube
-  - echo "$KUBE_CONFIG" | base64 --decode > ${HOME}/.kube/config
+  - echo $KUBE_CONFIG | base64 --decode > ${HOME}/.kube/config
 
-before_script:
-  - docker pull "beevelop/ionic" || true
-  - docker pull "nginx:alpine" || true
+before_script: []
 
 script:
+  - cat ${HOME}/.kube/config
   - kubectl get pods
-  - docker --version
-  - docker build -f udagram-feed-api/Dockerfile -t  mmagnani/udagram-feed-api:latest udagram-feed-api
-  - docker build -f udagram-user-api/Dockerfile -t  mmagnani/udagram-user-api:latest udagram-user-api
-  - docker build -f udagram-frontend/Dockerfile -t  mmagnani/udagram-frontend:latest udagram-frontend
-  - docker build -f udagram-reverse-proxy/Dockerfile -t  mmagnani/udagram-reverse-proxy:latest udagram-reverse-proxy
-
-
-after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push mmagnani/udagram-feed-api:latest
-  - docker push mmagnani/udagram-user-api:latest
-  - docker push mmagnani/udagram-frontend:latest
-  - docker push mmagnani/udagram-reverse-proxy:latest
-  - kubectl create namespace udagram
-  - kubectl apply -f udagram-kubernetes/udagram-deployments.yml
-  - kubectl apply -f udagram-kubernetes/udagram-services.yml
