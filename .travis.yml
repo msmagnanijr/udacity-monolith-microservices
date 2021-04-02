@@ -13,9 +13,9 @@ before_script:
 
 script:
   - docker --version
-  - cd udagram-feed-api && docker build -t  mmagnani/udagram-feed-api:latest .
-  - cd udagram-user-api && docker build -t  mmagnani/udagram-user-api:latest .
-  - cd udagram-frontend && docker build -t  mmagnani/udagram-frontend:latest .
+  - docker build -f udagram-feed-api/Dockerfile  -t  mmagnani/udagram-feed-api:latest udagram-feed-api
+  - docker build -f udagram-user-api/Dockerfile  -t  mmagnani/udagram-user-api:latest udagram-user-api
+  - docker build -f udagram-frontend/Dockerfile  -t  mmagnani/udagram-frontend:latest udagram-frontend
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
