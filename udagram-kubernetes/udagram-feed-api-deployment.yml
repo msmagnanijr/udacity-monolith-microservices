@@ -26,6 +26,9 @@ spec:
           limits:
             memory: "1024Mi"
             cpu: "500m"
+        envFrom:
+        - configMapRef:
+            name: env-config
         env:
         - name: POSTGRES_USERNAME
           valueFrom:
