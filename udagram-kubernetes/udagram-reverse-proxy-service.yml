@@ -12,3 +12,4 @@ spec:
     targetPort: 8080
   selector:
     app: udagram-reverse-proxy
+  type: LoadBalancer
