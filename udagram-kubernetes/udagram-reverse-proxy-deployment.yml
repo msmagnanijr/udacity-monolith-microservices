@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: udagram-reverse-proxy-deployment
+  name: udagram-reverse-proxy
   namespace: udagram
   labels:
     app: udagram-reverse-proxy

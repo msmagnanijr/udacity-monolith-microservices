@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: udagram-frontend-deployment
+  name: udagram-frontend
   namespace: udagram
   labels:
     app: udagram-frontend
