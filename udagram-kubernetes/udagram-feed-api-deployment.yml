@@ -6,7 +6,7 @@ metadata:
   labels:
     app: udagram-feed-api
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: udagram-feed-api
