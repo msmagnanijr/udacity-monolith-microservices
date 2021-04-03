@@ -1,7 +1,4 @@
-# udacity-monolith-microservices
-Udacity Udagram - Refactor Monolith to Microservices
-
-## Udagram Image Filtering Application
+## Udacity Udagram - Refactor Monolith to Microservices: Image Filtering Application
 
 Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
 
