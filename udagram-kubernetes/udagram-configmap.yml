@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-config
+  namespace: udagram
+data:
+  POSTGRES_USERNAME: udagram
+  POSTGRES_PASSWORD: udagram2021
+  POSTGRES_HOST: udagram-instance-1.example.us-east-1.rds.amazonaws.com
+  POSTGRES_DB: udagram
+  AWS_BUCKET: udagram-myaccount-final
+  AWS_REGION: us-east-1
+  AWS_PROFILE: udagram-dev
+  JWT_SECRET: helloworld
+  URL: http://localhost:8100
