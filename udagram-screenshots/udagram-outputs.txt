@@ -67,4 +67,4 @@ udagram-frontend-6c7478796         1         1         1       16m
 udagram-reverse-proxy-767ddd89db   1         1         1       16m
 udagram-user-api-64fb5f69d7        1         1         1       16m
 NAME               REFERENCE                     TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
-udagram-feed-api   Deployment/udagram-feed-api   <unknown>/50%   1         5         2          38s
+udagram-feed-api   Deployment/udagram-feed-api   0%/50%    1         5         1          6m49s
